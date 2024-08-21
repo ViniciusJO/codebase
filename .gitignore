@@ -1,0 +1,67 @@
+# General
+*.log
+*.tmp
+*.swp
+
+# C/C++
+**/*.o
+**/*.obj
+**/*.exe
+**/*.out
+
+# Node.js / TypeScript
+**/node_modules/
+**/dist/
+**/build/
+**/.turbo/
+**/.parcel-cache/
+**/.next/
+**/.nuxt/
+**/.svelte-kit/
+**/out/
+**/.cache/
+**/coverage/
+**/.env
+**/.env.local
+**/.env.*.local
+**/*lock.json
+
+# Svelte
+**/.svelte-kit/
+**/public/build/
+**/build/
+**/.vercel/
+**/netlify/
+**/static/build/
+**/__sapper__/
+**/.sapper/
+
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.venv/
+**/env/
+**/venv/
+**/.env
+**/.pylint.d/
+**/.coverage
+**/coverage.xml
+**/.hypothesis/
+
+# Lua
+**/*.luac
+
+# Archives and backup files
+**/*.gz
+**/*.zip
+**/*.tar
+**/*.tgz
+**/*.7z
+**/*.rar
+**/*.bak
+**/*.old
+**/*.orig
+**/*~
+
