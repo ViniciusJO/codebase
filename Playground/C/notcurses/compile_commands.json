@@ -1,0 +1,21 @@
+[
+  {
+    "arguments": [
+      "/sbin/gcc",
+      "-std=c23",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-D_DEFAULT_SOURCE",
+      "-D_XOPEN_SOURCE=600",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "obj/example.o",
+      "example.c"
+    ],
+    "directory": "/home/vinicius/shared_projects/codebase/Playground/C/notcurses",
+    "file": "/home/vinicius/shared_projects/codebase/Playground/C/notcurses/example.c",
+    "output": "/home/vinicius/shared_projects/codebase/Playground/C/notcurses/obj/example.o"
+  }
+]
