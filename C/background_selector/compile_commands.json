@@ -1,0 +1,19 @@
+[
+  {
+    "arguments": [
+      "/sbin/gcc",
+      "-std=c23",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "obj/main.o",
+      "main.c"
+    ],
+    "directory": "/home/vinicius/shared_projects/codebase/C/background_selector",
+    "file": "/home/vinicius/shared_projects/codebase/C/background_selector/main.c",
+    "output": "/home/vinicius/shared_projects/codebase/C/background_selector/obj/main.o"
+  }
+]

@@ -8,6 +8,7 @@
 **/*.obj
 **/*.exe
 **/*.out
+**/bin/
 
 # Node.js / TypeScript
 **/node_modules/
@@ -65,3 +66,5 @@
 **/*.orig
 **/*~
 
+
+**/deps/
