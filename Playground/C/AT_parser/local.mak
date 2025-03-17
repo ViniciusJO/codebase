@@ -1,0 +1,7 @@
+# Parameters
+TARGET=AT_partser
+PKGS=
+LIBS=
+ADITIONAL_BUILD?=
+ADITIONAL_LINK?=
+

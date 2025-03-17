@@ -8,6 +8,8 @@
 
 int printf(const char *, ...);
 
+char *bool_rep(bool a) { return a ? "true" : "false"; }
+
 int main(int argc, char **argv) {
   bool a = true;
 
@@ -19,8 +21,21 @@ int main(int argc, char **argv) {
   arraylist_append(al, "___-____");
   arraylist_append(al, "....");
   arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
+  arraylist_append(al, argv[0]);
 
-  for (int i = 0; i < al->length; i++) {
+  for (unsigned short i = 0; i < al->length; i++) {
     printf("%s\n", (char *)al->data[i]);
   }
 

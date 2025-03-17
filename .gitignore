@@ -8,6 +8,7 @@
 **/*.obj
 **/*.exe
 **/*.out
+**/*.bin
 **/bin/
 
 # Node.js / TypeScript

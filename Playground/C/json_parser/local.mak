@@ -1,0 +1,7 @@
+# Parameters
+TARGET=pojeto
+PKGS=
+LIBS=
+ADITIONAL_BUILD?=
+ADITIONAL_LINK?=
+

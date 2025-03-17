@@ -198,7 +198,6 @@ void arraylist_clear(ArrayList *arraylist);
  */
 void arraylist_sort(ArrayList *arraylist, ArrayListCompareFunc compare_func);
 
-#define ARRAY_LIST_IMPLEMENTATION
 #ifdef ARRAY_LIST_IMPLEMENTATION
 
 #include <stdlib.h>
@@ -212,7 +211,7 @@ ArrayList *arraylist_new(unsigned int length) {
   /* If the length is not specified, use a sensible default */
 
   if (length <= 0) {
-    length = 16;
+    length = 5;
   }
 
   /* Allocate the new ArrayList and fill in the fields.  There are
