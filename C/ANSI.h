@@ -33,7 +33,7 @@ extern int snprintf (char *__s, size_t __maxlen, const char *__format, ...);
 #define STYLE_INVERSE CSI "7m"
 #define STYLE_HIDDEN CSI "8m"
 #define STYLE_STRIKETHROUGH CSI "9m"
-#define STYLE_
+
 #define STYLE_BOLDOFF CSI "22m"
 #define STYLE_DIMOFF CSI "22m"
 #define STYLE_ITALICOFF CSI "23m"
@@ -129,6 +129,8 @@ ANSI_ATTRIBUTES static char *bg_256(unsigned char color) {
   return out;
 }
 
+// ─────────────────────────── Cursor ───────────────────────────
+
 #define CURSOR_UP(LITERAL_N) CSI #LITERAL_N "A"
 #define CURSOR_DOWN(LITERAL_N) CSI #LITERAL_N "B"
 #define CURSOR_FORWARD(LITERAL_N) CSI #LITERAL_N "C"
@@ -137,8 +139,8 @@ ANSI_ATTRIBUTES static char *bg_256(unsigned char color) {
 #define CURSOR_PREVLINE(LITERAL_N) CSI #LITERAL_N "F"
 #define CURSOR_COLUMN(LITERAL_N) CSI #LITERAL_N "G"
 #define CURSOR_POSITION(LITERAL_ROW, LITERAL_COL) CSI #LITERAL_ROW ";" #LITERAL_COL "H"
-#define CURSOR_HIDECSI "?25l"
-#define CURSOR_SHOWCSI "?25h"
+#define CURSOR_HIDE CSI "?25l"
+#define CURSOR_SHOW CSI "?25h"
 #define CURSOR_SAVE ESC "7"
 #define CURSOR_RESTORE ESC "8"
 
