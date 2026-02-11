@@ -1,7 +1,7 @@
-#include "colors.h"
+#include "codebase/colors.h"
 #define NOB_IMPLEMENTATION
 #define NOB_STRIP_PREFIX
-#include "nob.h"
+#include "codebase/nob.h"
 
 #ifdef __clang__
 #define defer

@@ -82,22 +82,22 @@ typedef struct {
   size_t pos;
   size_t row, col;
   Tokens tokens;
-} Lexer;
+} Lx;
 
 typedef uint32_t Color;
 
 extern Color highlight_colors[TOKEN_MAX];
 
-void lexer_init(Lexer *l, char *src);
-char lexer_consume(Lexer *l);
+void lx_init(Lx *l, char *src);
+char lx_consume(Lx *l);
 
-size_t lexer_consume_until_char(Lexer *l, const char c, const char preced);
-size_t lexer_consume_identifier(Lexer *l);
-size_t lexer_consume_literal_number(Lexer *l);
+size_t lx_consume_until_char(Lx *l, const char c, const char preced);
+size_t lx_consume_identifier(Lx *l);
+size_t lx_consume_literal_number(Lx *l);
 
-char lexer_peak(Lexer *l);
-char lexer_peak_prev(Lexer *l);
-char lexer_current(Lexer *l);
+char lx_peak(Lx *l);
+char lx_peak_prev(Lx *l);
+char lx_current(Lx *l);
 
 bool isWhitespace(char c);
 bool isAlpha(char c);
@@ -119,63 +119,63 @@ bool isValidIdChar(char c);
 
 Color highlight_colors[TOKEN_MAX] = {0};
 
-void lexer_init(Lexer *l, char *src) {
+void lx_init(Lx *l, char *src) {
   l->src = src;
   l->length = strlen(src);
   l->pos = l->col = l->col = 0;  
   memset(&l->tokens, 0, sizeof(Tokens));
 } 
 
-char lexer_consume(Lexer *l) {
+char lx_consume(Lx *l) {
   if(l->pos == l->length) return 0;
-  if(lexer_current(l) == '\n') {
+  if(lx_current(l) == '\n') {
     l->row++;
     l->col = 0;
   } else l->col++;
   return l->src[l->pos++];
 }
 
-size_t lexer_consume_until_char(Lexer *l, const char c, const char preced) {
+size_t lx_consume_until_char(Lx *l, const char c, const char preced) {
   if(l->pos == l->length) return 0;
   int count = 0;
-  while(c != lexer_current(l) || (preced && preced == lexer_peak_prev(l))) {
-    lexer_consume(l);
+  while(c != lx_current(l) || (preced && preced == lx_peak_prev(l))) {
+    lx_consume(l);
     count++;
   }
-  lexer_consume(l);
-  /*lexer_consume(l);*/
+  lx_consume(l);
+  /*lx_consume(l);*/
   return count+1;
 }
 
-size_t lexer_consume_identifier(Lexer *l) {
+size_t lx_consume_identifier(Lx *l) {
   if(l->pos == l->length) return 0;
   int count = 0;
-  while(isValidIdChar(lexer_current(l))) {
-    lexer_consume(l);
+  while(isValidIdChar(lx_current(l))) {
+    lx_consume(l);
     count++;
   }
   return count;
 }
 
-size_t lexer_consume_literal_number(Lexer *l) {
+size_t lx_consume_literal_number(Lx *l) {
   if(l->pos == l->length) return 0;
   int count = 0;
-  while(isNumericRepresentation(lexer_current(l))) {
-    lexer_consume(l);
+  while(isNumericRepresentation(lx_current(l))) {
+    lx_consume(l);
     count++;
   }
   return count;
 }
 
-char lexer_peak(Lexer *l) {
+char lx_peak(Lx *l) {
   return l->src[l->pos+1];
 }
 
-char lexer_peak_prev(Lexer *l) {
+char lx_peak_prev(Lx *l) {
   return l->src[l->pos-1];
 }
 
-char lexer_current(Lexer *l) {
+char lx_current(Lx *l) {
   return l->src[l->pos];
 }
 

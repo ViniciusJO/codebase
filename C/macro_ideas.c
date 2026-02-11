@@ -71,6 +71,7 @@ int main(void) {
   defer { DEBUG_PRINT("__"); };
 
   DEBUG_PRINT("1234");
+  var(a, b,c sx, { } ..... HH ==> 9 <== 30 @ # /\\);
 
   test();
 

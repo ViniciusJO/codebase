@@ -11,8 +11,8 @@
 #include <assert.h>
 #include <stdio.h>
 
-#include "vector.h"
-#include "colors.h"
+#include "codebase/vector.h"
+#include "codebase/colors.h"
 
 #define DEFINE_TOKEN() \
   TOKEN_VARIANT(IDENTIFIER) \
@@ -32,7 +32,7 @@
   TOKEN_VARIANT(EOF) \
 
 #define LEXER_IMPLEMENTATIONS
-#include "lexer.h"
+#include "codebase/lexer.h"
 
 const char* keywords[] = { "alignas", "alignof", "auto", "bool", "break", "case", "char", "const", "constexpr", "continue", "default", "do", "double", "else", "enum", "extern", "false", "float", "for", "goto", "if", "inline", "int", "long", "nullptr", "register", "restrict", "return", "short", "signed", "sizeof", "static", "static_assert", "struct", "switch", "thread_local", "true", "typedef", "typeof", "typeof_unqual", "union", "unsigned", "void", "volatile", "while", "_Alignas", "_Alignof", "_Atomic", "_BitInt", "_Bool", "_Complex", "_Decimal128", "_Decimal32", "_Decimal64", "_Generic", "_Imaginary", "_Noreturn", "_Static_assert", "_Thread_local" };
 
@@ -42,10 +42,11 @@ void print_token(Token *t) {
 
 #define MIN(A,B) ((A) < (B)) ? (A) : (B)
 
-Tokens tokenize(Lexer *l, char *src) {
+Tokens tokenize(Lx *l, char *src) {
+  (void)src;
   char c;
 
-  while((c = lexer_consume(l))) {
+  while((c = lx_consume(l))) {
     /*printf(COLOR_BLUE"%c\n"COLOR_RESET, c);*/
     Token t = {
       .text = l->src + l->pos - 1,
@@ -58,14 +59,14 @@ Tokens tokenize(Lexer *l, char *src) {
     else if('\t' == c) t.kind = TOKEN_TAB;
     else if(isNum(c)) { 
       t.kind = TOKEN_NUMBER;
-      t.size += lexer_consume_literal_number(l);
+      t.size += lx_consume_literal_number(l);
     }
     else if(c == '#') {
       t.kind = TOKEN_PREPROC;
-      t.size += lexer_consume_identifier(l);
+      t.size += lx_consume_identifier(l);
     } 
-    else if('/' == c && '/' == lexer_current(l)) {
-      t.size += lexer_consume_until_char(l, '\n', 0);
+    else if('/' == c && '/' == lx_current(l)) {
+      t.size += lx_consume_until_char(l, '\n', 0);
       t.kind = TOKEN_COMMENT;
     }
     else if(c == '(' || c == ')') t.kind = TOKEN_BRACE; 
@@ -74,24 +75,24 @@ Tokens tokenize(Lexer *l, char *src) {
     else if(c == '.' || c == ';' || c == ',') t.kind = TOKEN_PUNCT; 
     else if(c == '<') {
       t.kind = TOKEN_INCLUDE;
-      t.size += lexer_consume_until_char(l, '>', 0);
+      t.size += lx_consume_until_char(l, '>', 0);
     } 
     else if(c == '"') {
       t.kind = TOKEN_STRING;
-      t.size += lexer_consume_until_char(l, '"', '\\');
+      t.size += lx_consume_until_char(l, '"', '\\');
     } 
     else if(c == '\n') {
       t.kind = TOKEN_NEWLINE;
     }
     else {
-      t.size += lexer_consume_identifier(l);
-      /*while(isValidIdChar(lexer_consume(l))) {*/
+      t.size += lx_consume_identifier(l);
+      /*while(isValidIdChar(lx_consume(l))) {*/
       /*  t.size++;*/
       /*}*/
       /*l->pos--;*/
       /*printf(COLOR_RED"\n%c[%d]\n"COLOR_RESET, l->src[l->pos], l->src[l->pos]);*/
       bool is_keywork = false;
-      for(int i = 0; i < sizeof(keywords)/sizeof(char*); i++) {
+      for(int i = 0; (unsigned)i < sizeof(keywords)/sizeof(char*); i++) {
         /*printf("%s {%ld} == %.*s {%d} ? %s, %s\n", keywords[i], strlen(keywords[i]), (int)t.size, t.text, (int)t.size, strlen(keywords[i]) == t.size ? "true" : "false", !strncmp(keywords[i], t.text, strlen(keywords[i])) ? "true" : "false");*/
         if(strlen(keywords[i]) == t.size && !strncmp(keywords[i], t.text, strlen(keywords[i]))) {
           is_keywork = true;
@@ -99,7 +100,7 @@ Tokens tokenize(Lexer *l, char *src) {
         }
       }
       if(is_keywork) t.kind = TOKEN_KEYWORD;
-      else if(lexer_current(l) == '(') t.kind = TOKEN_FUNCTION;
+      else if(lx_current(l) == '(') t.kind = TOKEN_FUNCTION;
       else t.kind = TOKEN_IDENTIFIER;
     }
 
@@ -113,8 +114,8 @@ Tokens tokenize(Lexer *l, char *src) {
 }
 
 void render_source(char *src) {
-  Lexer l = {0};
-  lexer_init(&l, src);
+  Lx l = {0};
+  lx_init(&l, src);
 
   Tokens tokens = tokenize(&l, src);
 

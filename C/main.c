@@ -1,10 +1,10 @@
 #include <stdbool.h>
 
 #define ARRAY_LIST_IMPLEMENTATION
-#include "arraylist.h"
+#include "codebase/arraylist_.h"
 
 #define COMPARE_INT_IMPLEMENTATION
-#include "compare_int.h"
+#include "codebase/compare_int.h"
 
 int printf(const char *, ...);
 

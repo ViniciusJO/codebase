@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #define AL_LIBC
-#include "arraylist.h"
+#include "codebase/arraylist.h"
 
 typedef struct {
   char *items;

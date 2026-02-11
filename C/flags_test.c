@@ -1,6 +1,6 @@
 #define FLAGS_ATTRIBUTES static
 #define FLAGS_IMPLEMENTATION
-#include "flags.h"
+#include "codebase/flags.h"
 
 #include <stdlib.h>
 

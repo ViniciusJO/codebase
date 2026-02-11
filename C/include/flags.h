@@ -133,7 +133,7 @@ FLAGS_ATTRIBUTES void flag_print_help(FILE *stream);
 #endif//__cplusplus
 #endif//__FLAGS_H__
 
-#define FLAGS_IMPLEMENTATIONS
+//#define FLAGS_IMPLEMENTATIONS
 #ifdef FLAGS_IMPLEMENTATIONS
 #ifndef __FLAGS_IMP__
 #define __FLAGS_IMP__
