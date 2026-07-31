@@ -12,16 +12,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: make -C "./C"
-      id: bukd
+      id: build
       run: cd C && make -Bk && cd -
-    - name: pack it
+    - name: Pack
       id: pack
       run:
         mkdir clib                 |
         mv C/lib C/include clib        |
         tar czvf clib.tar.gz clib
     - name: Release
-      id: release
+      id: create-release
       uses: softprops/action-gh-release@v3
       if: github.ref_type == 'tag'
       with:
