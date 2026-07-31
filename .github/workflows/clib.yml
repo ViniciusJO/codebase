@@ -23,8 +23,10 @@ jobs:
       id: pack
       run:
         mkdir clib                 |
-        mv C/lib C/include clib        |
-        tar czvf clib.tar.gz clib
+        mv C/lib C/include clib    |
+        tar czvf clib.tar.gz clib  |    
+        ls -lah clib
+
     - name: Release
       id: create-release
       uses: softprops/action-gh-release@v3
