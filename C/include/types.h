@@ -58,7 +58,10 @@ __extension__ typedef unsigned long long int u64;
 // #endif
 // #endif//__cplusplus
 
-__extension__;
+
+#include <stdbool.h>
+
+// __extension__;
 
 #ifdef __cplusplus
 }
