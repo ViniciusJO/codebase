@@ -11,10 +11,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Check
-      run: cat C/Makefile
     - name: make -C "./C"
+      id: bukd
       run: cd C && make -Bk && cd -
+    - name: pack it
+      id: pack
+      run:
+        mkdir clib                 |
+        mv C/lib C/include clib        |
+        tar czvf clib.tar.gz clib
+    - name: Release
+      id: release
+      uses: softprops/action-gh-release@v3
+      if: github.ref_type == 'tag'
+      with:
+        files: clib.tar.gz
+
+    # - name: release
+    #   id: create-release
+    #   use: actions/create-release@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #
+    # - name: upload tar
+    #   id: create-release-assets
+    #   use: dwenegar/upload-release-assets@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     release_id: ${{ steps.create-release.outputs.id }}
+    #     assets_path: ./clib.tar.gz
+
 
 
 
