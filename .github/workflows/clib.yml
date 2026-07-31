@@ -11,8 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: make -kj 8 -C ./C
-      run: make -Bk
+    - name: Check
+      run: cat C/Makefile
+    - name: make -C "./C"
+      run: cd C && make -Bk && cd -
+
+
 
 
 #    - name: configure
