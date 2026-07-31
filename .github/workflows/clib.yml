@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: make -kj 8
+    - name: make -kj 8 -C ./C
       run: make -Bk
 
 
