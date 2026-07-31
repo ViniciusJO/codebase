@@ -1,0 +1,37 @@
+code ::= 
+
+operators ::= '+' | '-' | '*' | '/' | '|' | '||' | '&' | '&&' | '^' | '!' | '?' | ':' | '='
+braces ::= '[' | ']' | '(' | ')' | '{' | '}' | '<' | '>' | '«' | '»'
+punctuation ::= '.' | ',' | ';' | '->'
+
+alphabetical ::= 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
+
+zero ::= '0'
+
+binary ::= zero | '1'
+binary_recursive ::= binary[binary_recursive]
+binary_number ::= ('0b' | '0B')binary_recursive
+
+octal_nn :: = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8'
+octal ::= zero | octal_nn 
+octal_recursive ::= octal[octal_recursive]
+octal_number ::= ('0' | '0o' | '0O')ocatal_nn[octal_recursive]
+
+decimal_nn ::= '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+decimal ::= zero | decimal_nn
+decimal_recursive ::= decimal[decimal_recursive]
+decimal_number ::= decimal_nn[decimal_recursive]
+
+hex_nn ::= decimal_nn | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
+hex ::= zero | hex_nn
+hex_recursive ::= hex[hex_recursive]
+hex_number ::= ('0x' | '0X' | '0h' | '0H')[hex_recursive]
+
+float ::= (decimal_number)'.'(decimal[decimal_number][f]
+complex ::= (float_number | decimal_number)+'i'(float_number | decimal_number)
+
+number ::= binary_number | octal_number | decimal_number | hex_number | float
+
+alphanumeric ::= alphabetical | decimal
+
+boolean ::= 'true' | 'false' | binary

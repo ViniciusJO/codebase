@@ -239,7 +239,7 @@ char *sb_build_cstr(StrBuilder *sb);
 
 
 
-#define STR_IMPLEMENTATION
+// #define STR_IMPLEMENTATION
 #ifdef STR_IMPLEMENTATION
 
 /* -------------------------------------------------------------------------

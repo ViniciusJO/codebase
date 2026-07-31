@@ -1,7 +1,0 @@
-# Parameters
-TARGET=out
-PKGS=
-LIBS=
-ADITIONAL_BUILD?=
-ADITIONAL_LINK?=
-

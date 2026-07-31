@@ -1,45 +1,7 @@
-#include <stdbool.h>
+#include "./include/std.h"
 
-#define ARRAY_LIST_IMPLEMENTATION
-#include "codebase/arraylist_.h"
-
-#define COMPARE_INT_IMPLEMENTATION
-#include "codebase/compare_int.h"
-
-int printf(const char *, ...);
-
-char *bool_rep(bool a) { return a ? "true" : "false"; }
-
-int main(int argc, char **argv) {
-  bool a = true;
-
-  ArrayList *al = arraylist_new(0);
-  arraylist_append(al, "abc");
-  /*arraylist_append(al, 0);*/
-  arraylist_append(al, &argc);
-  arraylist_append(al, &a);
-  arraylist_append(al, "___-____");
-  arraylist_append(al, "....");
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-  arraylist_append(al, argv[0]);
-
-  for (unsigned short i = 0; i < al->length; i++) {
-    printf("%s\n", (char *)al->data[i]);
-  }
-
-  printf("\n\n%d\n\n", int_compare(&argc, &a));
-
-  return 0;
+int main(void) {
+  Graph* g = graph_create(150);
+  // printf("HELLO %lu\n", g->node_count);
+  UNUSED(g);
 }

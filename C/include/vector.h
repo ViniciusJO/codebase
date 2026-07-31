@@ -1,9 +1,9 @@
 #ifndef __VECTOR_H__
 #define __VECTOR_H__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
 
 #define vector_grow(vector) do { \
   if(0 == (vector).capacity) (vector).capacity = 2; \

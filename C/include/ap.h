@@ -420,7 +420,7 @@ AP_ATTRIBUTES void ap_completions_fish(FILE *fd);
 #endif //__cplusplus
 #endif //__AP_H__
 
-#define AP_IMPLEMENTATIONS
+// #define AP_IMPLEMENTATIONS
 #ifdef AP_IMPLEMENTATIONS
 #ifndef __AP_IMP__
 #define __AP_IMP__

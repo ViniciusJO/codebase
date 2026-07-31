@@ -14,6 +14,7 @@ extern FILE *stdin;		  /* Standard input stream.        */
 extern FILE *stdout;		/* Standard output stream.       */
 extern FILE *stderr;		/* Standard error output stream. */
 /* C89/C99 say they're macros.  Make them happy.  */
+
 #define stdin stdin
 #define stdout stdout
 #define stderr stderr
@@ -223,7 +224,7 @@ extern void exit(int status);
 // ```
 
 #define al_foreach(it, al) \
-  if(NULL != (al)->items) \
+  if(NULL != (al)->items && (al)->count > 0) \
   for (size_t it##_idx = 0; 0 == it##_idx;) \
   for(__typeof__((al)->items) it = (al)->items;  it##_idx < (al)->count; ++it##_idx, ++it)
 
@@ -305,15 +306,17 @@ extern void exit(int status);
   AL_FPRINTF(stdout, "\n}\n"); \
 } while(0)
 
-// #define al_println_object(al) do { \
-//   al_print_object(al); \
-//   AL_FPRINTF(stdout, "\n"); \
-// } while(0)
+/*
+#define al_println_object(al) do { \
+  al_print_object(al); \
+  AL_FPRINTF(stdout, "\n"); \
+} while(0)
 
-// #define al_println_object_named(al) do { \
-//   al_print_object_named(al); \
-//   AL_FPRINTF(stdout, "\n"); \
-// } while(0)
+#define al_println_object_named(al) do { \
+  al_print_object_named(al); \
+  AL_FPRINTF(stdout, "\n"); \
+} while(0)
+*/
 
 
 

@@ -1,0 +1,13 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 80
+BreakBeforeBraces: Attach
+AllowShortFunctionsOnASingleLine: None  # Disable packing functions on one line
+AllowShortBlocksOnASingleLine: false    # Keep code blocks expanded
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+SpacesBeforeTrailingComments: 1
+AlwaysBreakBeforeMultilineStrings: false
+BinPackArguments: true                  # Control argument packing for function calls
+BinPackParameters: true                 # Control parameter packing for function declarations
+

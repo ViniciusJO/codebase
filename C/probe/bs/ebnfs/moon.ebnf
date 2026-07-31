@@ -1,0 +1,87 @@
+chunk ::= block
+
+block ::= {stat} [retstat]
+
+stat ::=  ‘;’ |
+     varlist ‘=’ explist |
+     functioncall |
+     label |
+     break |
+     goto Name |
+     '{' block '}' |
+     while ['('] exp [')'] { block } |
+     repeat block until exp |
+     if ( '(' exp ')' | exp ) block [else block] |
+     for ('(' identifier ‘=’ exp ‘,’ exp [‘,’ exp] ')' | identifier ‘=’ exp ‘,’ exp [‘,’ exp]) block |
+     for ('(' namelist in explist ')' | namelist in explist) block |
+     function funcname funcbody |
+     local function Name funcbody |
+     local attnamelist [‘=’ explist]
+
+
+asignment_statement ::= [locality_attrib] identifier = (stat | exp)
+
+for_statement ::= for ('(' identifier ‘=’ exp ‘,’ exp [‘,’ exp] ')' | identifier ‘=’ exp ‘,’ exp [‘,’ exp]) block
+for_statement ::= for ('(' namelist in explist ')' | namelist in explist) block
+
+while_statement ::= while ['('] exp [')'] block
+
+repeat_statement ::= repeat block until exp
+
+if_statement ::= if ('(' exp ')' | exp) block [else block]
+
+function_statement ::= [locality_attrib] 'function' identifier funcbody
+
+
+
+locality_attrib = 'local' | 'global'
+
+
+attnamelist ::=  Name attrib {‘,’ Name attrib}
+
+attrib ::= [‘<’ Name ‘>’]
+
+retstat ::= return [explist] [‘;’]
+
+label ::= ‘::’ Name ‘::’
+
+funcname ::= Name {‘.’ Name} [‘:’ Name]
+
+varlist ::= var {‘,’ var}
+
+var ::=  Name | prefixexp ‘[’ exp ‘]’ | prefixexp ‘.’ Name
+
+namelist ::= Name {‘,’ Name}
+
+explist ::= exp {‘,’ exp}
+
+exp ::=  nil | false | true | Numeral | LiteralString | ‘...’ | functiondef |
+     prefixexp | tableconstructor | exp binop exp | unop exp
+
+prefixexp ::= var | functioncall | ‘(’ exp ‘)’
+
+functioncall ::=  prefixexp args | prefixexp ‘:’ Name args
+
+args ::=  ‘(’ [explist] ‘)’ | tableconstructor | LiteralString
+
+functiondef ::= function funcbody
+
+funcbody ::= ‘(’ [parlist] ‘)’ block end
+
+parlist ::= namelist [‘,’ ‘...’] | ‘...’
+
+tableconstructor ::= ‘{’ [fieldlist] ‘}’
+
+fieldlist ::= field {fieldsep field} [fieldsep]
+
+field ::= ‘[’ exp ‘]’ ‘=’ exp | Name ‘=’ exp | exp
+
+fieldsep ::= ‘,’ | ‘;’
+
+binop ::=  ‘+’ | ‘-’ | ‘*’ | ‘/’ | ‘//’ | ‘^’ | ‘%’ |
+     ‘&’ | ‘~’ | ‘|’ | ‘>>’ | ‘<<’ | ‘..’ |
+     ‘<’ | ‘<=’ | ‘>’ | ‘>=’ | ‘==’ | ‘~=’ |
+     and | or
+
+unop ::= ‘-’ | not | ‘#’ | ‘~’
+

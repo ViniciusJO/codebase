@@ -69,3 +69,7 @@
 
 
 **/deps/
+
+C/lib/*
+C/probe/easy-args
+./C/probe/learn/sqlite
